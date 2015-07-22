@@ -7,10 +7,10 @@
   <param name="autorepeat_rate" value="25" />
 </node>
 
-<!-- nishidalab_ypspur_joy_controler -->
-<node pkg="nishidalab_ypspur_joy_controler"   type="nishidalab_ypspur_joy_controler_node"  name="nishidalab_ypspur_joy_controler" >
-  <rosparam command="load" ns="/nishidalab_ypspur" file="$(find nishidalab_ypspur_driver)/config/nishidalab_ypspur_driver.yaml" />
-  <rosparam command="load" ns="/nishidalab_ypspur" file="$(find nishidalab_ypspur_joy_controler)/config/ps3.yaml" />
+<!-- joy_controler -->
+<node pkg="joy_controler"   type="joy_controler_node"  name="joy_controler" >
+  <rosparam command="load" ns="/joy_controler" file="$(find nishidalab_ypspur_driver)/config/nishidalab_ypspur_driver.yaml" />
+  <rosparam command="load" ns="/joy_controler" file="$(find joy_controler)/config/ps3.yaml" />
 </node>
 
 </launch>
