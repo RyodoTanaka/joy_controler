@@ -47,14 +47,14 @@ JoyController::JoyController() :
 {
 
   // using parameter server
-  n.param("joy_contoroller/linear_vel_max", linear_vel_max, linear_vel_max);
-  n.param("joy_contoroller/angular_vel_max", angular_vel_max, angular_vel_max);
-  n.param("joy_contoroller/linear_acc_max", linear_acc_max, linear_acc_max);
-  n.param("joy_contoroller/angular_acc_max", angular_acc_max, angular_acc_max);
-  n.param("joy_contoroller/axis_linear", axis_linear, axis_linear);
-  n.param("joy_contoroller/axis_angular", axis_angular, axis_angular);
-  n.param("joy_contoroller/enable_button", enable_button, enable_button);
-  n.param("joy_contoroller/enable_turbo_button", enable_turbo_button, enable_turbo_button);
+  n.param("joy_controller/linear_vel_max", linear_vel_max, linear_vel_max);
+  n.param("joy_controller/angular_vel_max", angular_vel_max, angular_vel_max);
+  n.param("joy_controller/linear_acc_max", linear_acc_max, linear_acc_max);
+  n.param("joy_controller/angular_acc_max", angular_acc_max, angular_acc_max);
+  n.param("joy_controller/axis_linear", axis_linear, axis_linear);
+  n.param("joy_controller/axis_angular", axis_angular, axis_angular);
+  n.param("joy_controller/enable_button", enable_button, enable_button);
+  n.param("joy_controller/enable_turbo_button", enable_turbo_button, enable_turbo_button);
 
   vel_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 
@@ -82,7 +82,7 @@ void JoyController::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "joy_contoroller");
+  ros::init(argc, argv, "joy_controller");
   JoyController NlabYpspurJoyCntler;
   ros::spin();
 }
