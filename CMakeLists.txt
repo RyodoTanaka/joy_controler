@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(nishidalab_ypspur_joy_controler)
+project(joy_controler)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -104,14 +104,14 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-add_executable(nishidalab_ypspur_joy_controler_node src/nishidalab_ypspur_joy_controler_node.cpp)
+add_executable(joy_controler_node src/joy_controler_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-add_dependencies(nishidalab_ypspur_joy_controler_node nishidalab_ypspur_joy_controler_generate_messages_cpp)
+add_dependencies(joy_controler_node joy_controler_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(nishidalab_ypspur_joy_controler_node
+target_link_libraries(joy_controler_node
   ${catkin_LIBRARIES}
 )
 

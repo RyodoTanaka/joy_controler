@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>nishidalab_ypspur_joy_controler</name>
+  <name>joy_controler</name>
   <version>1.0.0</version>
-  <description>The nishidalab_ypspur_joy_controler package</description>
+  <description>The joy_controler package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->

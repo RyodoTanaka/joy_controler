@@ -3,10 +3,10 @@
 #include <geometry_msgs/Twist.h>
 #include <cmath>
 
-class NishidalabYpspurJoyControler
+class JoyControler
 {
 public:
-  NishidalabYpspurJoyControler();
+  JoyControler();
 
 private:
   void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
@@ -35,7 +35,7 @@ private:
   double angular_vel;
 };
 
-NishidalabYpspurJoyControler::NishidalabYpspurJoyControler() :
+JoyControler::JoyControler() :
   linear_vel_max(1.1),
   angular_vel_max(M_PI),
   linear_acc_max(1.0),
@@ -47,22 +47,22 @@ NishidalabYpspurJoyControler::NishidalabYpspurJoyControler() :
 {
 
   // using parameter server
-  n.param("nishidalab_ypspur/linear_vel_max", linear_vel_max, linear_vel_max);
-  n.param("nishidalab_ypspur/angular_vel_max", angular_vel_max, angular_vel_max);
-  n.param("nishidalab_ypspur/linear_acc_max", linear_acc_max, linear_acc_max);
-  n.param("nishidalab_ypspur/angular_acc_max", angular_acc_max, angular_acc_max);
-  n.param("nishidalab_ypspur/axis_linear", axis_linear, axis_linear);
-  n.param("nishidalab_ypspur/axis_angular", axis_angular, axis_angular);
-  n.param("nishidalab_ypspur/enable_button", enable_button, enable_button);
-  n.param("nishidalab_ypspur/enable_turbo_button", enable_turbo_button, enable_turbo_button);
+  n.param("joy_controler/linear_vel_max", linear_vel_max, linear_vel_max);
+  n.param("joy_controler/angular_vel_max", angular_vel_max, angular_vel_max);
+  n.param("joy_controler/linear_acc_max", linear_acc_max, linear_acc_max);
+  n.param("joy_controler/angular_acc_max", angular_acc_max, angular_acc_max);
+  n.param("joy_controler/axis_linear", axis_linear, axis_linear);
+  n.param("joy_controler/axis_angular", axis_angular, axis_angular);
+  n.param("joy_controler/enable_button", enable_button, enable_button);
+  n.param("joy_controler/enable_turbo_button", enable_turbo_button, enable_turbo_button);
 
   vel_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 
-  joy_sub = n.subscribe<sensor_msgs::Joy>("joy", 10, &NishidalabYpspurJoyControler::joyCallback, this);
+  joy_sub = n.subscribe<sensor_msgs::Joy>("joy", 10, &JoyControler::joyCallback, this);
 
 }
 
-void NishidalabYpspurJoyControler::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
+void JoyControler::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
   geometry_msgs::Twist cmd_vel;
 
@@ -82,8 +82,8 @@ void NishidalabYpspurJoyControler::joyCallback(const sensor_msgs::Joy::ConstPtr&
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "nishidalab_ypspur_joy_controler");
-  NishidalabYpspurJoyControler NlabYpspurJoyCntler;
+  ros::init(argc, argv, "joy_controler");
+  JoyControler NlabYpspurJoyCntler;
   ros::spin();
 }
 
