@@ -1,4 +1,4 @@
-!<launch>
+<launch>
 
 <!-- joy_node -->
 <node respawn="true" pkg="joy" type="joy_node" name="joy">
