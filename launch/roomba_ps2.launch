@@ -1,4 +1,4 @@
-<launch>
+!<launch>
 
 <!-- joy_node -->
 <node respawn="true" pkg="joy" type="joy_node" name="joy">
@@ -7,9 +7,9 @@
   <param name="autorepeat_rate" value="25" />
 </node>
 
-<!-- joy_controler -->
-<node pkg="joy_controler"   type="joy_controler_node"  name="joy_controler" >
-  <rosparam command="load" ns="/joy_controler" file="$(find joy_controler)/config/ps2.yaml" />
+<!-- joy_controller -->
+<node pkg="joy_controller"   type="joy_controller_node"  name="joy_controller" >
+  <rosparam command="load" ns="/joy_controller" file="$(find joy_controller)/config/ps2.yaml" />
 </node>
 
 </launch>
