@@ -85,7 +85,7 @@ void TeleopTwistJoy::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
       if(holonomic)
 	cmd_vel.linear.y = linear_y_vel_max*joy->axes[axis_linear_y];
     } else{
-      cmd_vel.linear.x = linear_x_vel_min*0.7*joy->axes[axis_linear_x];
+      cmd_vel.linear.x = linear_x_vel_min*joy->axes[axis_linear_x];
       cmd_vel.linear.y = 0.0;
       cmd_vel.angular.z = angular_z_vel_min*joy->axes[axis_angular_z];
       if(holonomic)
