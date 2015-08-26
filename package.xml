@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>joy_controller</name>
+  <name>teleop_twist_joy</name>
   <version>1.0.0</version>
-  <description>The joy_controller package</description>
+  <description>The teleop_twist_joy package</description>
 
   <maintainer email="GRoadPG@gmail.com">RyodoTanaka</maintainer>
   <author>Ryodo Tanaka</author>
@@ -15,5 +15,6 @@
   <run_depend>geometry_msgs</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>sensor_msgs</run_depend>
+  <run_depend>joy</run_depend>
 
 </package>
