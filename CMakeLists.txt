@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(joy_controller)
+project(teleop_twist_joy)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -8,7 +8,6 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   roscpp
   sensor_msgs
-  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,14 +103,14 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-add_executable(joy_controller_node src/joy_controller_node.cpp)
+add_executable(teleop_twist_joy_node src/teleop_twist_joy_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-add_dependencies(joy_controller_node joy_controller_generate_messages_cpp)
+add_dependencies(teleop_twist_joy_node teleop_twist_joy_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(joy_controller_node
+target_link_libraries(teleop_twist_joy_node
   ${catkin_LIBRARIES}
 )
 
