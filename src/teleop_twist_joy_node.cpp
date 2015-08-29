@@ -103,7 +103,7 @@ void TeleopTwistJoy::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "teleop_twist_joy");
-  TeleopTwistJoy NlabYpspurJoyCntler;
+  TeleopTwistJoy teleop_twist_joy;
   ros::spin();
 }
 
