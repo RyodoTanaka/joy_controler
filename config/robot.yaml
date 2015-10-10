@@ -1,7 +1,7 @@
-linear_x_vel_max: 1.1  # Max velocity on Linear X
-linear_x_vel_min: 0.5  # min velocity on Linear X
-linear_y_vel_max: 1.1  # Max velocity on Linear Y
-linear_y_vel_min: 0.5  # min velocity on Linear Y
-linear_z_vel_max: 3.14 # Max velocity on Angular Z (PI)
-linear_z_vel_min: 1.04 # min velocity on Angular Z (PI/3)
-holonomic: true        # enable holonomic robot or not
+linear_x_vel_trubo: 1.1  # Trubo velocity on Linear X
+linear_x_vel_nomal: 0.5  # nomal velocity on Linear X
+linear_y_vel_trubo: 1.1  # Trubo velocity on Linear Y
+linear_y_vel_nomal: 0.5  # nomal velocity on Linear Y
+linear_z_vel_trubo: 3.14 # Trubo velocity on Angular Z (PI)
+linear_z_vel_nomal: 1.04 # nomal velocity on Angular Z (PI/3)
+holonomic: true          # enable holonomic robot or not

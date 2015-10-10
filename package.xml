@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>teleop_twist_joy</name>
+  <name>joy_twist</name>
   <version>1.0.0</version>
-  <description>The teleop_twist_joy package</description>
+  <description>The joy_twist package</description>
 
   <maintainer email="GRoadPG@gmail.com">RyodoTanaka</maintainer>
   <author>Ryodo Tanaka</author>
