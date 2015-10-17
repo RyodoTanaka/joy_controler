@@ -1,5 +1,4 @@
 <launch>
-
   <!-- arguments -->
   <arg name="joy_config" default="ps3" />
   <arg name="joy_dev" default="/dev/input/js0" />
@@ -12,10 +11,10 @@
     <param name="autorepeat_rate" value="25" />
   </node>
 
-  <!-- teleop_twist_joy -->
-  <node pkg="teleop_twist_joy"   type="teleop_twist_joy_node"  name="teleop_twist_joy" >
-    <rosparam command="load" ns="/teleop_twist_joy" file="$(find teleop_twist_joy)/config/$(arg joy_config).yaml" />
-    <rosparam command="load" ns="/teleop_twist" file="$(find teleop_twist_joy)/config/$(arg robot_config).yaml" />
+  <!-- joy_twist -->
+  <node pkg="joy_twist"   type="joy_twist_node"  name="joy_twist" output="screen">
+    <rosparam command="load" ns="joy_con/" file="$(find joy_twist)/config/$(arg joy_config).yaml" />
+    <rosparam command="load" ns="robot_conf/" file="$(find joy_twist)/config/$(arg robot_config).yaml" />
   </node>
 
 </launch>

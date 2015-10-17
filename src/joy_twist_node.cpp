@@ -6,13 +6,10 @@
 class JoyTwist
 {
 public:
-  JoyTwist();
+  JoyTwist(ros::NodeHandle &nh);
 
 private:
   void joyCallback(const sensor_msgs::Joy::ConstPtr& joy);
-  
-  // ros nodehandler
-  ros::NodeHandle n;
 
   // publisher (publishes cmd_vel)
   ros::Publisher vel_pub;
@@ -36,7 +33,7 @@ private:
   int enable_turbo_button;
 };
 
-JoyTwist::JoyTwist() :
+JoyTwist::JoyTwist(ros::NodeHandle &nh) :
   linear_x_vel_turbo(1.1),
   linear_y_vel_turbo(1.1),
   linear_x_vel_nomal(0.5),
@@ -53,30 +50,30 @@ JoyTwist::JoyTwist() :
 
   // using parameter server
   // get joy button info
-  n.param("joy_twist/axis_linear_x", axis_linear_x, axis_linear_x);
-  n.param("joy_twist/axis_linear_y", axis_linear_y, axis_linear_y);
-  n.param("joy_twist/axis_angular_z", axis_angular_z, axis_angular_z);
-  n.param("joy_twist/enable_button", enable_button, enable_button);
-  n.param("joy_twist/enable_turbo_button", enable_turbo_button, enable_turbo_button);
+  nh.param("joy_twist/joy_con/axis_linear_x", axis_linear_x, axis_linear_x);
+  nh.param("joy_twist/joy_con/axis_linear_y", axis_linear_y, axis_linear_y);
+  nh.param("joy_twist/joy_con/axis_angular_z", axis_angular_z, axis_angular_z);
+  nh.param("joy_twist/joy_con/enable_button", enable_button, enable_button);
+  nh.param("joy_twist/joy_con/enable_turbo_button", enable_turbo_button, enable_turbo_button);
   // get robot info
-  n.param("robot_twist/holonomic", holonomic, holonomic);
-  n.param("robot_twist/linear_x_vel_turbo", linear_x_vel_turbo, linear_x_vel_turbo);
-  n.param("robot_twist/linear_y_vel_turbo", linear_y_vel_turbo, linear_y_vel_turbo);
-  n.param("robot_twist/linear_x_vel_nomal", linear_x_vel_nomal, linear_x_vel_nomal);
-  n.param("robot_twist/linear_y_vel_nomal", linear_y_vel_nomal, linear_y_vel_nomal);
-  n.param("robot_twist/angular_z_vel_turbo", angular_z_vel_turbo, angular_z_vel_turbo);
-  n.param("robot_twist/angular_z_vel_nomal", angular_z_vel_nomal, angular_z_vel_nomal);
+  nh.param("joy_twist/robot_conf/holonomic", holonomic, holonomic);
+  nh.param("joy_twist/robot_conf/linear_x_vel_turbo", linear_x_vel_turbo, linear_x_vel_turbo);
+  nh.param("joy_twist/robot_conf/linear_y_vel_turbo", linear_y_vel_turbo, linear_y_vel_turbo);
+  nh.param("joy_twist/robot_conf/linear_x_vel_nomal", linear_x_vel_nomal, linear_x_vel_nomal);
+  nh.param("joy_twist/robot_conf/linear_y_vel_nomal", linear_y_vel_nomal, linear_y_vel_nomal);
+  nh.param("joy_twist/robot_conf/angular_z_vel_turbo", angular_z_vel_turbo, angular_z_vel_turbo);
+  nh.param("joy_twist/robot_conf/angular_z_vel_nomal", angular_z_vel_nomal, angular_z_vel_nomal);
 
-  vel_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 1);
+  vel_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
 
-  joy_sub = n.subscribe<sensor_msgs::Joy>("joy", 10, &JoyTwist::joyCallback, this);
+  joy_sub = nh.subscribe<sensor_msgs::Joy>("joy", 10, &JoyTwist::joyCallback, this);
 
 }
 
 void JoyTwist::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
   geometry_msgs::Twist cmd_vel;
-
+  
   if(joy->buttons[enable_button]){
     if(joy->buttons[enable_turbo_button]){
       cmd_vel.linear.x = linear_x_vel_turbo*joy->axes[axis_linear_x];
@@ -84,7 +81,7 @@ void JoyTwist::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
       cmd_vel.angular.z = angular_z_vel_turbo*joy->axes[axis_angular_z];
       if(holonomic)
 	cmd_vel.linear.y = linear_y_vel_turbo*joy->axes[axis_linear_y];
-    } else{
+    } else {
       cmd_vel.linear.x = linear_x_vel_nomal*joy->axes[axis_linear_x];
       cmd_vel.linear.y = 0.0;
       cmd_vel.angular.z = angular_z_vel_nomal*joy->axes[axis_angular_z];
@@ -103,7 +100,8 @@ void JoyTwist::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "joy_twist");
-  JoyTwist joy_twist;
+  ros::NodeHandle n;
+  JoyTwist joy_twist(n);
   ros::spin();
 }
 
