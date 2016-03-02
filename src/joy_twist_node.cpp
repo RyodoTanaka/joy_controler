@@ -55,7 +55,7 @@ JoyTwist::JoyTwist(ros::NodeHandle &nh) :
   n.param("joy_conf/axis_linear_y", axis_linear_y, axis_linear_y);
   n.param("joy_conf/axis_angular_z", axis_angular_z, axis_angular_z);
   n.param("joy_conf/enable_button", enable_button, enable_button);
-  n.param("/joy_conf/enable_turbo_button", enable_turbo_button, enable_turbo_button);
+  n.param("joy_conf/enable_turbo_button", enable_turbo_button, enable_turbo_button);
   // get robot info
   n.param("robot_conf/holonomic", holonomic, holonomic);
   n.param("robot_conf/linear_x_vel_turbo", linear_x_vel_turbo, linear_x_vel_turbo);
