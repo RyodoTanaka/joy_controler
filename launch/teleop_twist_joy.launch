@@ -13,7 +13,7 @@
 
   <!-- joy_twist -->
   <node pkg="joy_twist"   type="joy_twist_node"  name="joy_twist" output="screen">
-    <rosparam command="load" ns="joy_con/" file="$(find joy_twist)/config/$(arg joy_config).yaml" />
+    <rosparam command="load" ns="joy_conf/" file="$(find joy_twist)/config/$(arg joy_config).yaml" />
     <rosparam command="load" ns="robot_conf/" file="$(find joy_twist)/config/$(arg robot_config).yaml" />
   </node>
 

@@ -50,11 +50,11 @@ JoyTwist::JoyTwist(ros::NodeHandle &nh) :
 
   // using parameter server
   // get joy button info
-  nh.param("joy_twist/joy_con/axis_linear_x", axis_linear_x, axis_linear_x);
-  nh.param("joy_twist/joy_con/axis_linear_y", axis_linear_y, axis_linear_y);
-  nh.param("joy_twist/joy_con/axis_angular_z", axis_angular_z, axis_angular_z);
-  nh.param("joy_twist/joy_con/enable_button", enable_button, enable_button);
-  nh.param("joy_twist/joy_con/enable_turbo_button", enable_turbo_button, enable_turbo_button);
+  nh.param("joy_twist/joy_conf/axis_linear_x", axis_linear_x, axis_linear_x);
+  nh.param("joy_twist/joy_conf/axis_linear_y", axis_linear_y, axis_linear_y);
+  nh.param("joy_twist/joy_conf/axis_angular_z", axis_angular_z, axis_angular_z);
+  nh.param("joy_twist/joy_conf/enable_button", enable_button, enable_button);
+  nh.param("joy_twist/joy_conf/enable_turbo_button", enable_turbo_button, enable_turbo_button);
   // get robot info
   nh.param("joy_twist/robot_conf/holonomic", holonomic, holonomic);
   nh.param("joy_twist/robot_conf/linear_x_vel_turbo", linear_x_vel_turbo, linear_x_vel_turbo);
