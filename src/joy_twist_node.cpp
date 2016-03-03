@@ -48,25 +48,26 @@ JoyTwist::JoyTwist(ros::NodeHandle &nh) :
   holonomic(true)
 {
 
+  ros::NodeHandle n("~");
   // using parameter server
   // get joy button info
-  nh.param("joy_twist/joy_con/axis_linear_x", axis_linear_x, axis_linear_x);
-  nh.param("joy_twist/joy_con/axis_linear_y", axis_linear_y, axis_linear_y);
-  nh.param("joy_twist/joy_con/axis_angular_z", axis_angular_z, axis_angular_z);
-  nh.param("joy_twist/joy_con/enable_button", enable_button, enable_button);
-  nh.param("joy_twist/joy_con/enable_turbo_button", enable_turbo_button, enable_turbo_button);
+  n.param("joy_conf/axis_linear_x", axis_linear_x, axis_linear_x);
+  n.param("joy_conf/axis_linear_y", axis_linear_y, axis_linear_y);
+  n.param("joy_conf/axis_angular_z", axis_angular_z, axis_angular_z);
+  n.param("joy_conf/enable_button", enable_button, enable_button);
+  n.param("joy_conf/enable_turbo_button", enable_turbo_button, enable_turbo_button);
   // get robot info
-  nh.param("joy_twist/robot_conf/holonomic", holonomic, holonomic);
-  nh.param("joy_twist/robot_conf/linear_x_vel_turbo", linear_x_vel_turbo, linear_x_vel_turbo);
-  nh.param("joy_twist/robot_conf/linear_y_vel_turbo", linear_y_vel_turbo, linear_y_vel_turbo);
-  nh.param("joy_twist/robot_conf/linear_x_vel_nomal", linear_x_vel_nomal, linear_x_vel_nomal);
-  nh.param("joy_twist/robot_conf/linear_y_vel_nomal", linear_y_vel_nomal, linear_y_vel_nomal);
-  nh.param("joy_twist/robot_conf/angular_z_vel_turbo", angular_z_vel_turbo, angular_z_vel_turbo);
-  nh.param("joy_twist/robot_conf/angular_z_vel_nomal", angular_z_vel_nomal, angular_z_vel_nomal);
+  n.param("robot_conf/holonomic", holonomic, holonomic);
+  n.param("robot_conf/linear_x_vel_turbo", linear_x_vel_turbo, linear_x_vel_turbo);
+  n.param("robot_conf/linear_y_vel_turbo", linear_y_vel_turbo, linear_y_vel_turbo);
+  n.param("robot_conf/linear_x_vel_nomal", linear_x_vel_nomal, linear_x_vel_nomal);
+  n.param("robot_conf/linear_y_vel_nomal", linear_y_vel_nomal, linear_y_vel_nomal);
+  n.param("robot_conf/angular_z_vel_turbo", angular_z_vel_turbo, angular_z_vel_turbo);
+  n.param("robot_conf/angular_z_vel_nomal", angular_z_vel_nomal, angular_z_vel_nomal);
 
-  vel_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
+  vel_pub = nh.advertise<geometry_msgs::Twist>(n.param<std::string>("cmdvel_topic_name","cmd_vel"), 1);
 
-  joy_sub = nh.subscribe<sensor_msgs::Joy>("joy", 10, &JoyTwist::joyCallback, this);
+  joy_sub = nh.subscribe<sensor_msgs::Joy>(n.param<std::string>("joy_topic_name","joy"), 10, &JoyTwist::joyCallback, this);
 
 }
 
