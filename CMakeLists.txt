@@ -15,9 +15,6 @@ include_directories(
 )
 
 add_executable(joy_twist_node src/joy_twist_node.cpp)
-
-add_dependencies(joy_twist_node joy_twist_generate_messages_cpp)
-
 target_link_libraries(joy_twist_node
   ${catkin_LIBRARIES}
 )
