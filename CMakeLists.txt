@@ -17,4 +17,15 @@ include_directories(
 add_executable(joy_twist_node src/joy_twist_node.cpp)
 target_link_libraries(joy_twist_node
   ${catkin_LIBRARIES}
+  )
+
+install(TARGETS joy_twist_node
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
